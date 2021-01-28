@@ -1,5 +1,7 @@
 # Ynoveroo
 
+Site de livraison de repas en ligne - WiP
+
 ----
 
 ## Membres
