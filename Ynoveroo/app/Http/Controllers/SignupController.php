@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Image;
 use App\Models\Restaurant;
 use App\Models\User as User;
 use Illuminate\Http\Request;
@@ -56,6 +57,8 @@ class SignupController extends Controller
             'password.min' => 'Votre mot de passe doit faire au minimum :min caractères'
         ]);
 
+        $logo = Image::fileUpload($req);
+
         $user = User::create([
             'name' => $req->name,
             'email' => $req->email,
@@ -65,6 +68,7 @@ class SignupController extends Controller
         $restaurant = Restaurant::create([
             'user_id' => $user->id,
             'address' => $req->address,
+            'image_id' => $logo->id,
         ]);
 
         return redirect('/');
