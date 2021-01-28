@@ -1,5 +1,9 @@
 # Ynoveroo
 
+## Membres
+
+[Florian POINSOT](https://github.com/Zeyltar) et [Edwin FEBVIN](https://github.com/Valbatoze)
+
 ----
 
 ## Setup
