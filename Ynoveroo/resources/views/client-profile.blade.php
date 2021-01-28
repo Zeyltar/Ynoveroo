@@ -1,4 +1,4 @@
-<form action="/client/profil-update" method="post" class="needs-validation my-5">
+<form action="/clientProfileUpdate" method="post" class="needs-validation my-5">
     {{ csrf_field() }}
     <div class="row g-3">
         <div class="col-sm-6">

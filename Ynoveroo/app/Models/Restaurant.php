@@ -16,12 +16,12 @@ class Restaurant extends Model
         'image_id',
     ];
 
-    public function getImagePath($image_id) {
-        if($image_id == null)
-            return "";
+    protected $hidden = [
+        'user_id',
+    ];
 
-        $image = DB::table('images')->where('id', $image_id)->first();
-
-        return $image->file_path;
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

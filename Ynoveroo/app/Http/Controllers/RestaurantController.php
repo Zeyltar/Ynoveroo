@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Image;
+use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -30,5 +31,18 @@ class RestaurantController extends Controller
             $user->restaurantProfile->save();
 
         return redirect('/profil');
+    }
+
+    public function list()
+    {
+        $restaurants = Restaurant::all();
+
+
+
+
+
+        return view('restaurants-list', [
+            'list' => $restaurants,
+        ]);
     }
 }

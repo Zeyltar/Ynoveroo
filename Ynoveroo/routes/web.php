@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ConnectionController;
+use App\Http\Controllers\RestaurantController;
+use App\Http\Controllers\SignupController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,26 +18,32 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('landing');
+    $user = auth()->user();
+
+    return view('landing',[
+        'user' => $user,
+    ]);
 });
 
 Route::get('/home', function () {
     return redirect('/');
 });
 
-Route::get('/inscription', [\App\Http\Controllers\SignupController::class, 'clientForm']);
-Route::post('/inscription', [\App\Http\Controllers\SignupController::class, 'clientProcess']);
+Route::get('/inscription', [SignupController::class, 'clientForm']);
+Route::post('/inscription', [SignupController::class, 'clientProcess']);
 
-Route::get('/inscription-restaurant', [\App\Http\Controllers\SignupController::class, 'restaurantForm']);
-Route::post('/inscription-restaurant', [\App\Http\Controllers\SignupController::class, 'restaurantProcess']);
+Route::get('/inscription-restaurant', [SignupController::class, 'restaurantForm']);
+Route::post('/inscription-restaurant', [SignupController::class, 'restaurantProcess']);
 
-Route::get('/connexion', [\App\Http\Controllers\ConnectionController::class, 'form'])->name('login');
-Route::post('/connexion', [\App\Http\Controllers\ConnectionController::class, 'process']);
+Route::get('/connexion', [ConnectionController::class, 'form'])->name('login');
+Route::post('/connexion', [ConnectionController::class, 'process']);
+
+Route::get('/image/{id}', [\App\Http\Controllers\ImageController::class, 'imagePath'])->name('image.path');
 
 Route::group([
     'middleware' => 'App\Http\Middleware\Authenticate',
 ], function () {
-    Route::get('/deconnexion', [\App\Http\Controllers\ConnectionController::class, 'logout']);
+    Route::get('/deconnexion', [ConnectionController::class, 'logout']);
 
     Route::get('/profil', function () {
         $user = auth()->user();
@@ -42,8 +52,10 @@ Route::group([
             'user' => $user,
         ]);
     });
-    Route::post('/client/profil-update', [\App\Http\Controllers\ClientController::class, 'process']);
-    Route::post('/restaurant/profil-update', [\App\Http\Controllers\RestaurantController::class, 'process']);
+    Route::post('/clientProfileUpdate', [ClientController::class, 'process']);
+    Route::post('/restaurantProfileUpdate', [RestaurantController::class, 'process']);
+
+    Route::get('/restaurants', [RestaurantController::class, 'list']);
 
 });
 
