@@ -2,7 +2,7 @@
     {{ csrf_field() }}
     <div class="card bg-black mb-3">
         <div class="card-img-overlay position-relative">
-            <img src="{{ route('image.path', $user->restaurantProfile->image_id) }}" class="card-img-top" alt="...">
+            <img src="{{ $user->restaurantProfile->image_id ? route('image.path', $user->restaurantProfile->image_id) : "" }}" class="card-img-top" alt="">
             <div class="w-50 position-absolute end-0 bottom-0 p-3">
                 <input type="file" name="logo" class="form-control" id="logo" accept=".jpg,.jpeg,.png">
             </div>

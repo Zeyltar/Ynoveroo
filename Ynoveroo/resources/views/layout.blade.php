@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-100">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
     <link href="../landing.css" rel="stylesheet">
     <title></title>
 </head>
-<body class="d-flex h-100 text-center text-white bg-dark">
+<body class="d-flex vh-100 container-fluid text-center text-white bg-dark">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         @yield('content')
 
