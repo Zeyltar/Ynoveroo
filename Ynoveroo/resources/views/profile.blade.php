@@ -4,9 +4,9 @@
     @include('header')
 
     <main class="px-3">
-        @if(auth()->user()->clientProfile)
+        @if($user->clientProfile)
             @include('client-profile')
-        @elseif(auth()->user()->restaurantProfile)
+        @elseif($user->restaurantProfile)
             @include('restaurant-profile')
         @endif
     </main>

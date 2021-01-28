@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Restaurant extends Model
 {
@@ -14,4 +15,13 @@ class Restaurant extends Model
         'address',
         'image_id',
     ];
+
+    public function getImagePath($image_id) {
+        if($image_id == null)
+            return "";
+
+        $image = DB::table('images')->where('id', $image_id)->first();
+
+        return $image->file_path;
+    }
 }

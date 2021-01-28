@@ -35,9 +35,15 @@ Route::group([
 ], function () {
     Route::get('/deconnexion', [\App\Http\Controllers\ConnectionController::class, 'logout']);
 
-    Route::view('/profil','profile');
-    Route::post('/client/profil', [\App\Http\Controllers\ClientController::class, 'process']);
+    Route::get('/profil', function () {
+        $user = auth()->user();
 
+        return view('profile',[
+            'user' => $user,
+        ]);
+    });
+    Route::post('/client/profil-update', [\App\Http\Controllers\ClientController::class, 'process']);
+    Route::post('/restaurant/profil-update', [\App\Http\Controllers\RestaurantController::class, 'process']);
 
 });
 

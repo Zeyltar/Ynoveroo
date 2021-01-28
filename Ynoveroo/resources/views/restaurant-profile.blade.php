@@ -1,4 +1,4 @@
-<form action="/client/profil" method="post" enctype="multipart/form-data" class="needs-validation my-5">
+<form action="/restaurant/profil-update" method="post" enctype="multipart/form-data" class="needs-validation my-5">
     {{ csrf_field() }}
     <div class="row g-3">
         <div class="col-sm-6">
@@ -8,7 +8,13 @@
                 Valid name is required.
             </div>
         </div>
+        <div class="col-sm-6">
+            <div class="text-center">
 
+                <img src="{{ '/storage'.$user->restaurantProfile->getImagePath($user->restaurantProfile->image_id) }}" alt="">
+
+            </div>
+        </div>
         <div class="col-12">
             <label for="email" class="form-label">Email</label>
             <input type="email" name="email" class="form-control" id="email" value="{{$user->email}}" required>

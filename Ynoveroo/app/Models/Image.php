@@ -24,10 +24,10 @@ class Image extends Model
 
         if($req->file()) {
             $fileName = time().'_'.$req->logo->getClientOriginalName();
-            $filePath = $req->file('logo')->storeAs('uploads', $fileName, 'public');
+            $filePath = $req->file('logo')->storeAs('images', $fileName, 'public');
 
             $fileModel->name = time().'_'.$req->logo->getClientOriginalName();
-            $fileModel->file_path = '/storage/' . $filePath;
+            $fileModel->file_path = '/' . $filePath;
             $fileModel->save();
 
             return $fileModel;

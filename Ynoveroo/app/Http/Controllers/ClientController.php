@@ -28,7 +28,7 @@ class ClientController extends Controller
         $user = auth()->user();
 
         $user->email = request('email');
-        $user->clientProfile->birthday = request('birthday');
+        $user->clientProfile()->birthday = request('birthday');
         $user->clientProfile->address = request('address');
 
         if($user->isDirty())
